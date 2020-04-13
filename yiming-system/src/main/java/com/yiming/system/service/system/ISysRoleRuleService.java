@@ -1,7 +1,4 @@
-package com.yiming.service.system;
-
-import com.yiming.common.core.service.IBaseService;
-import com.yiming.domain.system.SysRoleRule;
+package com.yiming.system.service.system;
 
 /**
  * 角色权限表 (SysRoleRule)表服务接口

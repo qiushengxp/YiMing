@@ -1,9 +1,8 @@
-package com.yiming.service.system;
+package com.yiming.system.service.system;
 
 import com.yiming.common.core.service.IBaseService;
-import com.yiming.domain.system.SysAuthRole;
+import com.yiming.system.domain.system.SysAuthRole;
 
-import java.util.List;
 import java.util.Set;
 
 /**

@@ -1,9 +1,9 @@
-package com.yiming.service.system.impl;
+package com.yiming.system.service.system.impl;
 
 import com.yiming.common.utils.StringUtils;
-import com.yiming.domain.system.SysAuthRole;
-import com.yiming.mapper.system.SysAuthRoleMapper;
-import com.yiming.service.system.ISysAuthRoleService;
+import com.yiming.system.domain.system.SysAuthRole;
+import com.yiming.system.mapper.system.SysAuthRoleMapper;
+import com.yiming.system.service.system.ISysAuthRoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

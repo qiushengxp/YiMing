@@ -1,8 +1,7 @@
-package com.yiming.service.system;
+package com.yiming.system.service.system;
 
 import com.yiming.common.core.service.IBaseService;
-import com.yiming.domain.system.SysUser;
-import java.util.List;
+import com.yiming.system.domain.system.SysUser;
 
 /**
  * 管理员表(SysUser)表服务接口

@@ -1,8 +1,8 @@
 package com.yiming.web.controller.index;
 
 import com.yiming.common.core.conntroller.BaseController;
-import com.yiming.domain.system.SysUser;
-import com.yiming.service.system.ISysUserService;
+import com.yiming.system.domain.system.SysUser;
+import com.yiming.system.service.system.ISysUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

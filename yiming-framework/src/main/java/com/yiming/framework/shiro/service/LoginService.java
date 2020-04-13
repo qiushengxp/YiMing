@@ -3,9 +3,9 @@ package com.yiming.framework.shiro.service;
 import com.yiming.common.utils.DateUtils;
 import com.yiming.common.utils.StringUtils;
 import com.yiming.common.utils.security.Md5Utils;
-import com.yiming.domain.system.SysUser;
+import com.yiming.system.domain.system.SysUser;
 import com.yiming.framework.shiro.util.ShiroUtils;
-import com.yiming.service.system.ISysUserService;
+import com.yiming.system.service.system.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

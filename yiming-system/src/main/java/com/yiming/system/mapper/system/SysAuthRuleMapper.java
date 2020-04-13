@@ -1,17 +1,16 @@
-package com.yiming.mapper.system;
+package com.yiming.system.mapper.system;
 
-import com.yiming.domain.system.SysAuthRole;
+import com.yiming.system.domain.system.SysAuthRule;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 /**
- * 角色表(SysAuthRole)表数据库访问层
+ * 规则表(SysAuthRule)表数据库访问层
  *
  * @author wa.huang
- * @since 2020-04-04 16:32:41
+ * @since 2020-04-04 16:32:44
  */
-public interface SysAuthRoleMapper {
+public interface SysAuthRuleMapper {
 
     /**
      * 通过ID查询单条数据
@@ -19,41 +18,41 @@ public interface SysAuthRoleMapper {
      * @param id 主键
      * @return 实例对象
      */
-    SysAuthRole selectById(Long id);
+    SysAuthRule selectById(Long id);
 
     /**
      * 查询指定行数据
      *
      * @param offset 查询起始位置
-     * @param limit  查询条数
+     * @param limit 查询条数
      * @return 对象列表
      */
-    List<SysAuthRole> selectAllByLimit(SysAuthRole sysAuthRole, @Param("offset") int offset, @Param("limit") int limit);
+    List<SysAuthRule> selectAllByLimit(SysAuthRule sysAuthRule, @Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param sysAuthRole 实例对象
+     * @param sysAuthRule 实例对象
      * @return 对象列表
      */
-    List<SysAuthRole> selectAll(SysAuthRole sysAuthRole);
+    List<SysAuthRule> selectAll(SysAuthRule sysAuthRule);
 
     /**
      * 新增数据
      *
-     * @param sysAuthRole 实例对象
+     * @param sysAuthRule 实例对象
      * @return 影响行数
      */
-    int insert(SysAuthRole sysAuthRole);
+    int insert(SysAuthRule sysAuthRule);
 
     /**
      * 修改数据
      *
-     * @param sysAuthRole 实例对象
+     * @param sysAuthRule 实例对象
      * @return 影响行数
      */
-    int update(SysAuthRole sysAuthRole);
+    int update(SysAuthRule sysAuthRule);
 
     /**
      * 通过主键删除数据
@@ -63,5 +62,4 @@ public interface SysAuthRoleMapper {
      */
     int deleteById(Long id);
 
-    List<SysAuthRole> selectRoleByUserId(Long userId);
 }

@@ -1,6 +1,6 @@
-package com.yiming.mapper.system;
+package com.yiming.system.mapper.system;
 
-import com.yiming.domain.system.SysUser;
+import com.yiming.system.domain.system.SysUser;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 

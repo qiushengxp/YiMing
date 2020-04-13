@@ -2,7 +2,7 @@ package com.yiming.framework.shiro.util;
 
 import com.yiming.common.utils.BeanUtils;
 import com.yiming.common.utils.StringUtils;
-import com.yiming.domain.system.SysUser;
+import com.yiming.system.domain.system.SysUser;
 import com.yiming.framework.shiro.realm.UserRealm;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;

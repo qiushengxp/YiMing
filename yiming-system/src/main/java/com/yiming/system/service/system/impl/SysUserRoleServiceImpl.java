@@ -1,12 +1,10 @@
-package com.yiming.service.system.impl;
+package com.yiming.system.service.system.impl;
 
-import com.yiming.domain.system.SysUserRole;
-import com.yiming.mapper.system.SysUserRoleMapper;
-import com.yiming.service.system.ISysUserRoleService;
+import com.yiming.system.mapper.system.SysUserRoleMapper;
+import com.yiming.system.service.system.ISysUserRoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 用户角色表 (SysUserRole)表服务实现类

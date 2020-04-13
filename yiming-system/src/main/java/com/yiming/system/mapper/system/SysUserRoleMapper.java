@@ -1,8 +1,4 @@
-package com.yiming.mapper.system;
-
-import com.yiming.domain.system.SysUserRole;
-import org.apache.ibatis.annotations.Param;
-import java.util.List;
+package com.yiming.system.mapper.system;
 
 /**
  * 用户角色表 (SysUserRole)表数据库访问层

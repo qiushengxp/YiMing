@@ -1,8 +1,8 @@
-package com.yiming.service.system.impl;
+package com.yiming.system.service.system.impl;
 
-import com.yiming.domain.system.SysUser;
-import com.yiming.mapper.system.SysUserMapper;
-import com.yiming.service.system.ISysUserService;
+import com.yiming.system.domain.system.SysUser;
+import com.yiming.system.mapper.system.SysUserMapper;
+import com.yiming.system.service.system.ISysUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

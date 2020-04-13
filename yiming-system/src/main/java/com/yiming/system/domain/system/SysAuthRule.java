@@ -1,4 +1,4 @@
-package com.yiming.domain.system;
+package com.yiming.system.domain.system;
 
 import com.yiming.common.core.domain.BaseEntity;
 

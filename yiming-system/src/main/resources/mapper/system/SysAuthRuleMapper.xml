@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yiming.mapper.system.SysAuthRuleMapper">
+<mapper namespace="com.yiming.system.mapper.system.SysAuthRuleMapper">
 
-    <resultMap id="SysAuthRuleResult" type="com.yiming.domain.system.SysAuthRule">
+    <resultMap id="SysAuthRuleResult" type="com.yiming.system.domain.system.SysAuthRule">
         <!--@Table sys_auth_rule-->
         <result property="id" column="id"/>
         <result property="conditions" column="conditions"/>
@@ -181,8 +181,8 @@
         delete from sys_auth_rule where id = #{id}
     </delete>
 
-    <select id="selectRuleByUserId" parameterType="Long" resultMap="SysAuthRuleResult">
-        <include refid="selectRuleVo"/>
-        where r.del_flag=0 and u.id=#{userId}
-    </select>
+    <!--<select id="selectRuleByUserId" parameterType="Long" resultMap="SysAuthRuleResult">-->
+        <!--<include refid="selectRuleVo"/>-->
+        <!--where r.del_flag=0 and u.id=#{userId}-->
+    <!--</select>-->
 </mapper>

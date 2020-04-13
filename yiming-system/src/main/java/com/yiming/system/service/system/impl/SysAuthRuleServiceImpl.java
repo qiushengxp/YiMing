@@ -1,8 +1,8 @@
-package com.yiming.service.system.impl;
+package com.yiming.system.service.system.impl;
 
-import com.yiming.domain.system.SysAuthRule;
-import com.yiming.mapper.system.SysAuthRuleMapper;
-import com.yiming.service.system.ISysAuthRuleService;
+import com.yiming.system.domain.system.SysAuthRule;
+import com.yiming.system.mapper.system.SysAuthRuleMapper;
+import com.yiming.system.service.system.ISysAuthRuleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

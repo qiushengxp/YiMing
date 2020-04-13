@@ -1,10 +1,10 @@
 package com.yiming.framework.shiro.realm;
 
-import com.yiming.domain.system.SysUser;
+import com.alibaba.fastjson.JSON;
+import com.yiming.system.domain.system.SysUser;
 import com.yiming.framework.shiro.service.LoginService;
 import com.yiming.framework.shiro.util.ShiroUtils;
-import com.yiming.mapper.system.SysAuthRuleMapper;
-import com.yiming.service.system.ISysAuthRoleService;
+import com.yiming.system.service.system.ISysAuthRoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -44,8 +44,8 @@ public class UserRealm extends AuthorizingRealm {
 
         // 获取用户角色键值
         rolus = roleService.selectRoleKeys(user.getId());
-        rolus.add("common");
         menus.add("system:test");
+        System.out.println(JSON.toJSON(rolus));
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 角色加入AuthorizationInfo认证对象
         info.setRoles(rolus);
