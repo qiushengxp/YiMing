@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yiming.mapper.system.SysAuthRoleMapper">
+
+    <resultMap id="SysAuthRoleResult" type="com.yiming.domain.system.SysAuthRole">
+        <!--@Table sys_auth_role-->
+        <result property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="rule" column="rule"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleteTime" column="delete_time"/>
+    </resultMap>
+
+    <!--查询配置-->
+    <sql id="selectVo">
+        select
+          id, role_name, rule, create_time, update_time, delete_time
+        from yiming.sys_auth_role
+    </sql>
+    
+    <!-- 查询条件 -->
+	<sql id="sqlwhereSearch">
+		<where>
+		    id > 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="roleName != null and roleName != ''">
+                and role_name = #{roleName}
+            </if>
+            <if test="rule != null and rule != ''">
+                and rule = #{rule}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="deleteTime != null">
+                and delete_time = #{deleteTime}
+            </if>
+		</where>
+	</sql>
+
+<!--查询指定行数据-->
+    <select id="selectById" resultMap="SysAuthRoleResult">
+        <include refid="selectVo"/>
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="selectAllByLimit" resultMap="SysAuthRoleResult">
+        <include refid="selectVo"/>
+        <include refid="sqlwhereSearch" />
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectAll" resultMap="SysAuthRoleResult">
+        <include refid="selectVo"/>
+        <include refid="sqlwhereSearch" />
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yiming.sys_auth_role(
+            <if test="roleName != null and roleName != ''">
+            role_name,             </if>
+            <if test="rule != null and rule != ''">
+            rule,             </if>
+            <if test="createTime != null">
+            create_time,             </if>
+            <if test="updateTime != null">
+            update_time,             </if>
+            <if test="deleteTime != null">
+            delete_time            </if>
+)
+        values (
+                <if test="roleName != null and roleName != ''">
+                #{roleName},                 </if>
+                <if test="rule != null and rule != ''">
+                #{rule},                 </if>
+                <if test="createTime != null">
+                #{createTime},                 </if>
+                <if test="updateTime != null">
+                #{updateTime},                 </if>
+                <if test="deleteTime != null">
+                #{deleteTime}                </if>
+)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yiming.sys_auth_role
+        <set>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName},
+            </if>
+            <if test="rule != null and rule != ''">
+                rule = #{rule},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="deleteTime != null">
+                delete_time = #{deleteTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yiming.sys_auth_role where id = #{id}
+    </delete>
+
+</mapper>
