@@ -1,10 +1,10 @@
 package com.yiming.framework.shiro.realm;
 
-import com.alibaba.fastjson.JSON;
 import com.yiming.system.domain.system.SysUser;
 import com.yiming.framework.shiro.service.LoginService;
 import com.yiming.framework.shiro.util.ShiroUtils;
 import com.yiming.system.service.system.ISysAuthRoleService;
+import com.yiming.system.service.system.ISysAuthRuleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -32,6 +32,9 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private ISysAuthRoleService roleService;
 
+    @Autowired
+    private ISysAuthRuleService ruleService;
+
     /**
      * 授权
      */
@@ -40,17 +43,22 @@ public class UserRealm extends AuthorizingRealm {
         SysUser user = ShiroUtils.getSysUser();
 
         Set<String> rolus = new HashSet<String>();
-        Set<String> menus = new HashSet<String>();
+        Set<String> rules = new HashSet<String>();
 
-        // 获取用户角色键值
-        rolus = roleService.selectRoleKeys(user.getId());
-        menus.add("system:test");
-        System.out.println(JSON.toJSON(rolus));
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        // 角色加入AuthorizationInfo认证对象
-        info.setRoles(rolus);
-        // 权限加入AuthorizationInfo认证对象
-        info.setStringPermissions(menus);
+        if (user.isAdmin()) {
+            info.addRole("admin");
+            info.addStringPermission("*:*:*");
+        } else {
+            // 获取用户角色键值
+            rolus = roleService.selectRoleKeys(user.getId());
+            rules = ruleService.selectRuleKeys(user.getId());
+            // 角色加入AuthorizationInfo认证对象
+            info.setRoles(rolus);
+            // 权限加入AuthorizationInfo认证对象
+            info.setStringPermissions(rules);
+        }
+
         return info;
     }
 

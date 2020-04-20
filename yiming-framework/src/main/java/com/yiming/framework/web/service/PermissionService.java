@@ -118,7 +118,7 @@ public class PermissionService {
      * 判断用户是否不具备某权限，与 isPermitted逻辑相反。
      *
      * @param permission 权限名称
-     * @return 用户是否不具备某权限
+     * @return 用户是否不具备某权限`
      */
     public boolean isLacksPermitted(String permission)
     {

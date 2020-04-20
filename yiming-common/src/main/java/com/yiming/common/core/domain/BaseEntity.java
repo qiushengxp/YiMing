@@ -1,6 +1,7 @@
 package com.yiming.common.core.domain;
 
 import com.yiming.common.utils.DateUtils;
+import com.yiming.common.utils.StringUtils;
 
 import java.io.Serializable;
 
@@ -62,6 +63,9 @@ public class BaseEntity implements Serializable {
      * @return yyyy-MM-dd HH:mm:ss
      */
     public String getCreateTimeText() {
+        if(StringUtils.isNull(createTime)){
+            return "";
+        }
         return DateUtils.parseTimestampToStr(createTime);
     }
 
@@ -87,6 +91,9 @@ public class BaseEntity implements Serializable {
      * @return yyyy-MM-dd HH:mm:ss
      */
     public String getUpdateTimeText() {
+        if(StringUtils.isNull(updateTime)){
+            return "";
+        }
         return DateUtils.parseTimestampToStr(updateTime);
     }
 
@@ -112,6 +119,9 @@ public class BaseEntity implements Serializable {
      * @return yyyy-MM-dd HH:mm:ss
      */
     public String getDeleteTimeText() {
+        if(StringUtils.isNull(deleteTime)){
+            return "";
+        }
         return DateUtils.parseTimestampToStr(deleteTime);
     }
 

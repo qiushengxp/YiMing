@@ -1,12 +1,14 @@
 package com.yiming.system.service.system.impl;
 
+import com.yiming.common.utils.StringUtils;
 import com.yiming.system.domain.system.SysAuthRule;
+import com.yiming.system.domain.system.SysUser;
 import com.yiming.system.mapper.system.SysAuthRuleMapper;
 import com.yiming.system.service.system.ISysAuthRuleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.*;
 
 /**
  * 规则表(SysAuthRule)表服务实现类
@@ -19,7 +21,7 @@ public class SysAuthRuleServiceImpl implements ISysAuthRuleService {
     @Resource
     private SysAuthRuleMapper sysAuthRuleMapper;
 
-   /**
+    /**
      * 通过ID查询单条数据
      *
      * @param id 主键
@@ -29,7 +31,7 @@ public class SysAuthRuleServiceImpl implements ISysAuthRuleService {
     public SysAuthRule selectById(Long id) {
         return this.sysAuthRuleMapper.selectById(id);
     }
-    
+
     /**
      * 通过实体查询数据
      *
@@ -45,7 +47,7 @@ public class SysAuthRuleServiceImpl implements ISysAuthRuleService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -86,5 +88,97 @@ public class SysAuthRuleServiceImpl implements ISysAuthRuleService {
     @Override
     public boolean deleteById(Long id) {
         return this.sysAuthRuleMapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public Set<String> selectRuleKeys(Long userId) {
+        List<SysAuthRule> rules = this.sysAuthRuleMapper.selectRuleByUserId(userId);
+        Set<String> keys = new HashSet<>();
+        for (SysAuthRule rule : rules) {
+            if (StringUtils.isNotNull(rule)) {
+                keys.add(rule.getPerms());
+            }
+        }
+        return keys;
+    }
+
+    @Override
+    public List<SysAuthRule> selectMenusByUser(SysUser user) {
+        List<SysAuthRule> menus = new LinkedList<SysAuthRule>();
+        if (user.isAdmin()) {
+            menus = this.sysAuthRuleMapper.selectMenuNormalAll();
+        }
+
+        return getChildPerms(menus, 0);
+    }
+
+    /**
+     * 查询子权限
+     *
+     * @param list
+     * @param parentId
+     * @return
+     */
+    public List<SysAuthRule> getChildPerms(List<SysAuthRule> list, int parentId) {
+        List<SysAuthRule> retureList = new ArrayList<>();
+        for (Iterator<SysAuthRule> iterator = list.iterator(); iterator.hasNext(); ) {
+            SysAuthRule t = (SysAuthRule) iterator.next();
+            if (t.getPid() == parentId) {
+                recursiveFu(list, t);
+                retureList.add(t);
+            }
+        }
+        return retureList;
+    }
+
+    /**
+     * 获取子菜单
+     *
+     * @param list
+     * @param t
+     * @return
+     */
+    private List<SysAuthRule> getChildList(List<SysAuthRule> list, SysAuthRule t) {
+        List<SysAuthRule> tlist = new ArrayList<SysAuthRule>();
+        Iterator<SysAuthRule> it = list.iterator();
+        while (it.hasNext()) {
+            SysAuthRule n = (SysAuthRule) it.next();
+            if (n.getPid().longValue() == t.getId().longValue()) {
+                tlist.add(n);
+            }
+        }
+        return tlist;
+    }
+
+    /**
+     * 递归查询所有子菜单
+     *
+     * @param list
+     * @param t
+     * @return
+     */
+    private void recursiveFu(List<SysAuthRule> list, SysAuthRule t) {
+        List<SysAuthRule> childList = getChildList(list, t);
+        t.setChildren(childList);
+        for (SysAuthRule tChild : childList) {
+            if (hasChild(list, tChild)) {
+                Iterator<SysAuthRule> it = childList.iterator();
+                while (it.hasNext()) {
+                    SysAuthRule n = (SysAuthRule) it.next();
+                    recursiveFu(list, n);
+                }
+            }
+        }
+    }
+
+    /**
+     * 检查是否有子菜单
+     *
+     * @param list
+     * @param t
+     * @return
+     */
+    private boolean hasChild(List<SysAuthRule> list, SysAuthRule t) {
+        return getChildList(list, t).size() > 0 ? true : false;
     }
 }

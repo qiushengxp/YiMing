@@ -11,6 +11,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Configuration
 // 表示通过aop框架暴露该代理对象,AopContext能够访问
 @EnableAspectJAutoProxy(exposeProxy = true)
-@MapperScan("com.yiming**.mapper")
+@MapperScan("com.yiming.*.mapper")
 public class ApplicationConfig {
 }

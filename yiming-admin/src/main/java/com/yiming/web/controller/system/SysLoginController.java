@@ -21,7 +21,7 @@ public class SysLoginController extends BaseController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "admin/login";
     }
 
     @PostMapping("/login")

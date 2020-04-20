@@ -23,11 +23,11 @@
           id, name, account, password, salt, last_login_ip, last_login_time, status, create_time, update_time, delete_time
         from sys_user
     </sql>
-
+    
     <!-- 查询条件 -->
-    <sql id="sqlwhereSearch">
-        <where>
-            id > 0
+	<sql id="sqlwhereSearch">
+		<where>
+		    id > 0
             <if test="id != null">
                 and id = #{id}
             </if>
@@ -61,16 +61,16 @@
             <if test="deleteTime != null">
                 and delete_time = #{deleteTime}
             </if>
-        </where>
-    </sql>
+		</where>
+	</sql>
 
-    <!--查询指定行数据-->
+<!--查询指定行数据-->
     <select id="selectById" resultMap="SysUserResult">
         <include refid="selectVo"/>
         where id = #{id}
     </select>
 
-    <!--根据账号名查询用户-->
+<!--根据账号名查询用户-->
     <select id="selectUserByLoginName" parameterType="String" resultMap="SysUserResult">
         <include refid="selectVo"/>
         where account = #{userName}
@@ -79,82 +79,62 @@
     <!--查询指定行数据-->
     <select id="selectAllByLimit" resultMap="SysUserResult">
         <include refid="selectVo"/>
-        <include refid="sqlwhereSearch"/>
+        <include refid="sqlwhereSearch" />
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="selectAll" resultMap="SysUserResult">
         <include refid="selectVo"/>
-        <include refid="sqlwhereSearch"/>
+        <include refid="sqlwhereSearch" />
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into sys_user(
-        <if test="name != null and name != ''">
-            name,
-        </if>
-        <if test="account != null and account != ''">
-            account,
-        </if>
-        <if test="password != null and password != ''">
-            password,
-        </if>
-        <if test="salt != null and salt != ''">
-            salt,
-        </if>
-        <if test="lastLoginIp != null and lastLoginIp != ''">
-            last_login_ip,
-        </if>
-        <if test="lastLoginTime != null">
-            last_login_time,
-        </if>
-        <if test="status != null">
-            status,
-        </if>
-        <if test="createTime != null">
-            create_time,
-        </if>
-        <if test="updateTime != null">
-            update_time,
-        </if>
-        <if test="deleteTime != null">
-            delete_time
-        </if>
-        )
+            <if test="name != null and name != ''">
+            name,             </if>
+            <if test="account != null and account != ''">
+            account,             </if>
+            <if test="password != null and password != ''">
+            password,             </if>
+            <if test="salt != null and salt != ''">
+            salt,             </if>
+            <if test="lastLoginIp != null and lastLoginIp != ''">
+            last_login_ip,             </if>
+            <if test="lastLoginTime != null">
+            last_login_time,             </if>
+            <if test="status != null">
+            status,             </if>
+            <if test="createTime != null">
+            create_time,             </if>
+            <if test="updateTime != null">
+            update_time,             </if>
+            <if test="deleteTime != null">
+            delete_time            </if>
+)
         values (
-        <if test="name != null and name != ''">
-            #{name},
-        </if>
-        <if test="account != null and account != ''">
-            #{account},
-        </if>
-        <if test="password != null and password != ''">
-            #{password},
-        </if>
-        <if test="salt != null and salt != ''">
-            #{salt},
-        </if>
-        <if test="lastLoginIp != null and lastLoginIp != ''">
-            #{lastLoginIp},
-        </if>
-        <if test="lastLoginTime != null">
-            #{lastLoginTime},
-        </if>
-        <if test="status != null">
-            #{status},
-        </if>
-        <if test="createTime != null">
-            #{createTime},
-        </if>
-        <if test="updateTime != null">
-            #{updateTime},
-        </if>
-        <if test="deleteTime != null">
-            #{deleteTime}
-        </if>
-        )
+                <if test="name != null and name != ''">
+                #{name},                 </if>
+                <if test="account != null and account != ''">
+                #{account},                 </if>
+                <if test="password != null and password != ''">
+                #{password},                 </if>
+                <if test="salt != null and salt != ''">
+                #{salt},                 </if>
+                <if test="lastLoginIp != null and lastLoginIp != ''">
+                #{lastLoginIp},                 </if>
+                <if test="lastLoginTime != null">
+                #{lastLoginTime},                 </if>
+                <if test="status != null">
+                #{status},                 </if>
+                <if test="createTime != null">
+                #{createTime},                 </if>
+                <if test="updateTime != null">
+                #{updateTime},                 </if>
+                <if test="deleteTime != null">
+                #{deleteTime}                </if>
+)
     </insert>
 
     <!--通过主键修改数据-->

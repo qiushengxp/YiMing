@@ -139,6 +139,6 @@
 
     <select id="selectRoleByUserId" parameterType="Long" resultMap="SysAuthRoleResult">
         <include refid="selectRoleVo"/>
-        where r.del_flag=0 and ur.id=#{userId}
+        where r.del_flag=0 and ur.uid=#{userId}
     </select>
 </mapper>

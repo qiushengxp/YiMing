@@ -3,6 +3,7 @@ package com.yiming.system.mapper.system;
 import com.yiming.system.domain.system.SysAuthRule;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 规则表(SysAuthRule)表数据库访问层
@@ -62,4 +63,16 @@ public interface SysAuthRuleMapper {
      */
     int deleteById(Long id);
 
+    /**
+     * 根据用户ID 查询权限
+     * @param id
+     * @return
+     */
+    List<SysAuthRule> selectRuleByUserId(Long id);
+
+    /**
+     * 查询除了按钮外的所有权限
+     * @return
+     */
+    List<SysAuthRule> selectMenuNormalAll();
 }

@@ -1,6 +1,7 @@
 package com.yiming.system.domain.system;
 
 import com.yiming.common.core.domain.BaseEntity;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * 管理员表(SysUser)实体类
@@ -13,24 +14,25 @@ public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
     private String name;
     /**
-    * 用户名
-    */
+     * 用户名
+     */
     private String account;
     /**
-    * 密码
-    */
+     * 密码
+     */
     private String password;
     private String salt;
     /**
-    * 最后登录IP
-    */
+     * 最后登录IP
+     */
     private String lastLoginIp;
     /**
-    * 最后登录时间
-    */
+     * 最后登录时间
+     */
     private Long lastLoginTime;
 
-    
+    private static Long isFounder = 1L;
+
     public String getName() {
         return name;
     }
@@ -38,7 +40,7 @@ public class SysUser extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public String getAccount() {
         return account;
     }
@@ -46,7 +48,7 @@ public class SysUser extends BaseEntity {
     public void setAccount(String account) {
         this.account = account;
     }
-    
+
     public String getPassword() {
         return password;
     }
@@ -54,7 +56,7 @@ public class SysUser extends BaseEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getSalt() {
         return salt;
     }
@@ -62,7 +64,7 @@ public class SysUser extends BaseEntity {
     public void setSalt(String salt) {
         this.salt = salt;
     }
-    
+
     public String getLastLoginIp() {
         return lastLoginIp;
     }
@@ -70,7 +72,7 @@ public class SysUser extends BaseEntity {
     public void setLastLoginIp(String lastLoginIp) {
         this.lastLoginIp = lastLoginIp;
     }
-    
+
     public Long getLastLoginTime() {
         return lastLoginTime;
     }
@@ -79,4 +81,12 @@ public class SysUser extends BaseEntity {
         this.lastLoginTime = lastLoginTime;
     }
 
+    public boolean isAdmin() {
+        Long id = this.getId();
+        return isAdmin(id);
+    }
+
+    public static boolean isAdmin(Long userId) {
+        return userId != null && userId.equals(isFounder);
+    }
 }
